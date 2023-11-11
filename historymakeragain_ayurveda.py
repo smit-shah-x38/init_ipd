@@ -24,7 +24,7 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config["CORS_HEADERS"] = "Content-Type"
 
-text_file = r"E:\Work\workbackups\localdata\apikey.txt"
+text_file = r"E:\Work\sem5backups\localdata\apikey.txt"
 
 with open(text_file, "r") as f:
     api_key = f.read().strip()
@@ -33,7 +33,7 @@ llm = OpenAI(openai_api_key=api_key)
 
 # import wikipedia sentences
 candidate_sentences = pd.read_csv(
-    r"E:\Work\workbackups\llm\ayurstart.csv"
+    r"E:\Work\sem5backups\init_ipd\ayurveda_usable.csv"
 )
 
 df = pd.DataFrame(
