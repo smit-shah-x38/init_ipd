@@ -136,6 +136,22 @@ def ask():
         }
     )
 
+@app.route("/ask_no_context", methods=["POST"])
+@cross_origin()
+def nocontext():
+    question = request.json["question"]
+
+    prompt = PromptTemplate(
+        template= "\nQ: {question}\n A: ",
+        input_variables=["question"],
+    )
+
+    llm_chain = LLMChain(prompt=prompt, llm=llm)
+    response = llm_chain.run(question)
+
+    return jsonify({
+        'response': response.replace("\n", "")
+    })
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5051)
